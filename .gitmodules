@@ -1,0 +1,3 @@
+[submodule "amazon-s3-php-class"]
+	path = amazon-s3-php-class
+	url = git://github.com/mackstann/amazon-s3-php-class
