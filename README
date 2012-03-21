@@ -1,6 +1,5 @@
 The idea here is to everage DNS along with local and cloud storage to create a shortener system that can be used in the enterprise. This is not a service per see but a system for creating short URLs that are owned by the domain producing them. This puts the short URL data in the hands of the creator of short URLs and it will never go away.
 
-
 --------Original README--------
 Originally written as a hugely successful blog entry--it's time for others to branch and have fun:
 http://briancray.com/2009/08/26/free-php-url-shortener-script/

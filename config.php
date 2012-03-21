@@ -3,6 +3,8 @@
  * First authored by Brian Cray
  * License: http://creativecommons.org/licenses/by/3.0/
  * Contact the author at http://briancray.com/
+ * 
+ * S3 and local store sections added by Elmer Masters
  */
 
 // db options
@@ -36,3 +38,17 @@ define('CACHE', TRUE);
 
 // if so, where will the cache files be stored? (include trailing slash)
 define('CACHE_DIR', dirname(__FILE__) . '/cache/');
+
+// do you want to create a local store
+define('LOCAL_STORE', FALSE);
+
+// if so, where will the local store files be stored (include trailing slash)
+define('LOCAL_STORE_DIR', dirname(__FILE__) . '/store/');
+
+// do you want to use Amazon S3 for storage?
+define('S3', FALSE);
+
+// if so, let's set some S3 variables
+define('awsAccessKey', 'change to your access key');
+define('awsSecretKey', 'change to your secret key');
+define('S3_BUCKET', 'name of S3 bucket');

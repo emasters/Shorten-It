@@ -3,6 +3,8 @@
  * First authored by Brian Cray
  * License: http://creativecommons.org/licenses/by/3.0/
  * Contact the author at http://briancray.com/
+ * 
+ * S3 and local store sections added by Elmer Masters
  */
  
 ini_set('display_errors', 0);
@@ -47,7 +49,42 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 		mysql_query('INSERT INTO ' . DB_TABLE . ' (long_url, created, creator) VALUES ("' . mysql_real_escape_string($url_to_shorten) . '", "' . time() . '", "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '")');
 		$shortened_url = getShortenedURLFromID(mysql_insert_id());
 		mysql_query('UNLOCK TABLES');
+		
+		
 	}
+	/**
+	 * This is were we write to a file
+	 * and stick it into S3
+	 */
+	if(LOCAL_STORE)
+	{
+		$fhandle = fopen(LOCAL_STORE_DIR . $shortened_url, 'w+');
+		$redirpage = '<html>
+						<head>
+							<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+							<title></title>
+							<META HTTP-EQUIV="Refresh" CONTENT="0;URL='.$url_to_shorten.'">
+							<meta name="robots" content="noindex"/>
+							<link rel="canonical" href="'.$url_to_shorten.'"/>
+						</head>
+							<body>
+							</body>
+					  </html>';
+		fwrite($fhandle, $redirpage);
+		fclose($fhandle);	
+	}
+	if(S3)
+	{
+		if (!class_exists('S3')) require_once './amazon-s3-php-class/S3.php';
+
+		$uploadFile = LOCAL_STORE_DIR . $shortened_url; 
+		$s3 = new S3(awsAccessKey, awsSecretKey);
+		// Put our file (also with public read access)
+		if ($s3->putObjectFile($uploadFile, S3_BUCKET, baseName($uploadFile), S3::ACL_PUBLIC_READ)) {
+		}
+	}
+	
+	
 	echo BASE_HREF . $shortened_url;
 }
 
