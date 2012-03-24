@@ -80,7 +80,7 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 		$uploadFile = LOCAL_STORE_DIR . $shortened_url; 
 		$s3 = new S3(awsAccessKey, awsSecretKey);
 		// Put our file (also with public read access)
-		if ($s3->putObjectFile($uploadFile, S3_BUCKET, baseName($uploadFile), S3::ACL_PUBLIC_READ)) {
+		if ($s3->putObjectFile($uploadFile, S3_BUCKET, baseName($uploadFile), S3::ACL_PUBLIC_READ,array(),'text/html')) {
 		}
 	}
 	
