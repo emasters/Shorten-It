@@ -85,7 +85,7 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 	}
 	
 	
-	echo '<div class="alert alert-success">'.BASE_HREF . $shortened_url.'</div>';
+	echo BASE_HREF . $shortened_url;
 }
 
 function getShortenedURLFromID ($integer, $base = ALLOWED_CHARS)

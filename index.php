@@ -30,6 +30,25 @@
 
 </html>
 <body>
+	  <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Shorten It</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 	 <div class="container">
 		<div class="hero-unit">
 	        <form action="shorten.php" id="shortener" class="well form-inline">
@@ -39,7 +58,23 @@
 			</form>
 			<div id="shorturl"></div>
 	     </div>
-
+		<div class="row">
+        <div class="span4">
+          <h2>Bookmarklet</h2>
+           <p>Drag the button below to your bookmark bar.</p>
+          <p><a href="javascript:(function(){document.location='http://b.elide.us/shorten.php?longurl='+encodeURIComponent(location.href)}());" class="btn">Shorten It</a></p>
+        </div>
+        <div class="span4">
+          <h2>API Key</h2>
+           <p>Information about the API key will go here.</p>
+           <p><a href="#" class="btn">View details</a></p>
+        </div>
+        <div class="span4">
+          <h2>Help</h2>
+          <p>Documentation and such go here.</p>
+          <p><a href="#" class="btn">View details</a></p>
+        </div>
+      </div>
 	</div>
 <script type="text/javascript">
 window.onload = (function(){
@@ -58,7 +93,7 @@ try{
     /* Send the data using post and put the results in a div */
     $.post( url, { longurl: term },
       function( data ) {
-          $( "#shorturl" ).empty().append( data );
+          $( "#shorturl" ).empty().addClass('alert alert-success').append( data );
       }
     );
   });
