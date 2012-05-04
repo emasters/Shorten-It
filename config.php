@@ -9,7 +9,7 @@
 
 // db options
 define('DB_NAME', 'your db name');
-define('DB_USER', 'your db usernae');
+define('DB_USER', 'your db username');
 define('DB_PASSWORD', 'your db password');
 define('DB_HOST', 'localhost');
 define('DB_TABLE', 'shortenedurls');
@@ -17,6 +17,16 @@ define('DB_TABLE', 'shortenedurls');
 // connect to database
 mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysql_select_db(DB_NAME);
+
+//Database table information 
+define("USER_TABLE", "tbUsers");
+define("LOGGED_IN_TABLE", "tbLoggedInUsers");
+
+//Fully Qualified Domain Name
+define("SITE_HTTP", "");
+
+//Return email address
+define("FROM_EMAIL", "");
 
 // base location of script (include trailing slash)
 define('BASE_HREF', 'http://' . $_SERVER['HTTP_HOST'] . '/');
