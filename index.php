@@ -1,3 +1,9 @@
+<?php
+require_once 'classes/Auth.class.php';
+session_start();
+$auth = new Auth();
+$logged_in = $auth->checkSession();
+?>
 <!DOCTYPE html>
 <html>
 	<title>Shorten It - A URL shortener</title>
@@ -27,12 +33,13 @@
     <link rel="apple-touch-icon-precomposed" href="./img/apple-touch-icon-57-precomposed.png">
 	<meta name="robots" content="noindex, nofollow">
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
-
+	<!-- For Google Analytics tracking, paste code after this line and before </head> -->
 </html>
 <body>
 	  <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
+        	
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -44,12 +51,34 @@
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <?php
+              	if (empty($logged_in)) {
+					  echo "<li><a href=\"login.php\">Login</a></li>";
+				  } else {
+					  echo "<li><a href=\"#profile\">".$_SESSION['email']."</a></li>";
+				  }
+				  
+              ?>
+              
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 	 <div class="container">
+	 	<div class="modal hide fade" id="login">
+		    <div class="modal-header">
+		    <h3>Login</h3>
+		    <a class="close" data-dismiss="modal">x</a>
+		    </div>
+		    <div class="modal-body">
+		    <p>One fine body...</p>
+		    </div>
+		    <div class="modal-footer">
+		    <a href="#" class="btn">Close</a>
+		    <a href="#" class="btn btn-primary">Save changes</a>
+		    </div>
+		    </div>
 		<div class="hero-unit">
 	        <form action="shorten.php" id="shortener" class="well form-inline">
 			<label for="longurl">URL to shorten</label> 
@@ -76,6 +105,9 @@
         </div>
       </div>
 	</div>
+<script type="text/javascript">
+	$('#login').modal();
+</script>
 <script type="text/javascript">
 window.onload = (function(){
 try{ 
