@@ -54,8 +54,10 @@ $logged_in = $auth->checkSession();
               <?php
               	if (empty($logged_in)) {
 					  echo "<li><a href=\"login.php\">Login</a></li>";
+					  echo "<li><a href=\"register.php\">Register</a></li>";
 				  } else {
 					  echo "<li><a href=\"#profile\">".$_SESSION['email']."</a></li>";
+					  echo "<li><a href=\"logout.php\">Logout</a></li>";
 				  }
 				  
               ?>
@@ -91,7 +93,7 @@ $logged_in = $auth->checkSession();
         <div class="span4">
           <h2>Bookmarklet</h2>
            <p>Drag the button below to your bookmark bar.</p>
-          <p><a href="javascript:(function(){document.location='http://b.elide.us/shorten.php?longurl='+encodeURIComponent(location.href)}());" class="btn">Shorten It</a></p>
+          <p><a href="javascript:(function(){document.location='<?php echo BASE_HREF; ?>shorten.php?longurl='+encodeURIComponent(location.href)}());" class="btn">Shorten It</a></p>
         </div>
         <div class="span4">
           <h2>API Key</h2>
