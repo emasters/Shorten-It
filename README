@@ -1,8 +1,6 @@
-The idea here is to leverage DNS along with local and cloud storage to create a shortener system that can be used 
-in the enterprise. This is not a service per see but a system for creating short URLs that are owned by the 
-domain producing them. This puts the short URL data in the hands of the creator of short URLs and it will never go away.
+The idea here is to leverage DNS along with local and cloud storage to create a shortener system that can be used in the enterprise. This is not a service per see but a system for creating short URLs that are owned by the domain producing them. This puts the short URL data in the hands of the creator of short URLs and it will never go away.
 
-The system will include user registration and API key functionality to control and track who is responsible for shortening URLs;
+The system will include user registration and API key functionality to control and track who is responsible for shortening URLs; inclusion of Google Analytics keys for tracking usage;
 
 --------Original README--------
 Originally written as a hugely successful blog entry--it's time for others to branch and have fun:
